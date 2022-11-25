@@ -1,0 +1,185 @@
+body{
+    background-color: #2c3d4f;
+}
+
+.container{
+    background-color:#2c3d4f ;
+}
+
+.fa-circle-xmark{
+    font-weight: 300;
+    font-size: 20px;
+    color: white;
+    padding: 10px 0px;
+}
+
+.fa-star {
+    font-weight: 300;
+    font-size: 20px;
+    color: white;
+    padding: 10px 0px;
+}
+
+.fa-heart{
+    padding: 5px 0px;
+    color: red;
+    font-size: 20px;
+}
+
+.row.icons {
+    padding: 10px;
+
+}
+
+.intro{
+    font-size: 20px;
+    color: white;
+    font-weight: 600;
+    padding: 25px;
+}
+
+p{
+    color: white;
+    font-weight: 500;
+}
+
+
+
+.btn-asw{
+    display: none;
+    margin: 5px auto !important;
+}
+
+#btn4{
+    display: none;
+}
+
+p#lives {
+    margin: 0;
+    font-size: 18px;
+    padding-top: 3px;
+    padding-left: 10px;
+}
+
+.endGameX {
+    text-align: center;
+    line-height: 40px;
+    font-size: 25px;
+    padding: 15px;
+}
+
+#finalScore{
+    font-size: 20px;
+  
+}
+
+#onlyImg{
+    display: none;
+    margin: 0 auto;
+    margin-top: 15px;
+    width: 300px;
+    height: 180px;
+
+}
+
+
+#cat{
+    margin: 0 auto;
+    width: 100%;
+    
+
+}
+
+.winGameX {
+    text-align: center;
+    padding: 21px;
+    font-size: 18px;
+}
+
+.fa-trophy{
+    color: #eeba0b;
+    font-size: 20px;
+}
+
+
+#heart{
+    display: none;
+}
+
+
+p#question {
+    height: 71px;
+    margin-top: 30px;
+}
+
+i#star {
+    font-size: 60px;
+
+}
+
+span {
+    position: relative;
+    bottom: 40px;
+}
+
+.btn{
+    margin: 0px auto;
+}
+
+#selectContinent{
+    display: none;
+}
+
+.btn-c{
+    margin-bottom: 10px;
+}
+
+#cat1 {
+    margin: 0 auto;
+    height: 280px;
+}
+
+p.text-center {
+    font-size: 20px;
+    padding: 10px;
+}
+
+.livesX{
+    display: flex;
+}
+
+
+#firstBtn{
+    display: block;
+}
+
+
+
+#logOut{
+    display: none;
+    color: white;
+}
+
+@media only screen and (min-width: 700px)  {
+    #cat{
+        width: 50%;
+    }
+
+    .btn{
+        width: 30%;
+    }
+   
+  }
+
+  
+@media only screen and (min-width: 1000px)  {
+    #cat{
+        width: 30%;
+    }
+
+    .btn{
+        width: 30%;
+    }
+   
+   
+  }
