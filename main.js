@@ -199,7 +199,7 @@ function endGameTextOn(){   //generates the text then game is over
         <span> ${score[1]} </span> <br>
         Mejor puntuacion en ${score[3]}: <i class="fa-regular fa-star fa-sm"></i> ${localStorage[score[3]]} 
         </p>
-        <button type="button" class="btn btn-light btn-lg btn-block" id="showScores" onclick='showScoresOn()'> Show more scores! </button>
+       
     </div>
 `
 }
@@ -214,6 +214,7 @@ function endGame(){  //it is called when the game is oer
     gameOVer()  //the sound of the game when its over
     saveScore()  //sets best score
     saveDataFireBase()
+    showScoresOn( )
     //getDataFireBase()
     document.getElementById('onlyImg').style.display = 'none'
     document.getElementById('cat').style.display = 'block'
@@ -238,7 +239,7 @@ function WonGameTextOn(){  //generates the text when the user wins the game
     <div class='winGameX'>
         <p> Enhorabuena!!! <br> Lo has conseguido<br> Eres el mejor acertando capitales! <br> Mejor puntuacion en: ${score[3]}: ${localStorage[score[3]]} </p>
         <i class="fa-solid fa-trophy"></i>
-        <button type="button" class="btn btn-light btn-lg btn-block" id="showScores"  onclick='showScoresOn()'> Show more scores! </button>
+        
     </div>
 `
 }
@@ -248,6 +249,7 @@ function gameWon(){  //its called when the user wins the game
     gameWonSound()  //play a victory sound
     saveScore() //it saves the best score
     saveDataFireBase()
+    showScoresOn()
     //////getDataFireBase()
     document.getElementById('onlyImg').style.display = 'none'
     document.getElementById('cat').style.display = 'block';
@@ -307,25 +309,18 @@ async function saveDataFireBase(){
 
 async function getDataFireBase(){
     const querySnapshot = await getDocs(collection(db, 'score'));
-    setUpPosts(querySnapshot.docs)
+    setUpPosts(querySnapshot.docs, userName)
     
 
 }
 
 function showScoresOn (){
-    let mainContainer = document.querySelector('#mainContainer')
-    let postContainer = document.querySelector('#containerPost')
-    mainContainer.style.display = 'none'
-    postContainer.style.display = 'block'
+    let dataFireStore = document.querySelector('#data-score')
+    dataFireStore.style.display = 'block'
     getDataFireBase()
 
 }
 
 function showScoresOff(){
-    let mainContainer = document.querySelector('#mainContainer')
-    let postContainer = document.querySelector('#containerPost')
-    mainContainer.style.display = 'block'
-    postContainer.style.display = 'none'
-
-
+    document.querySelector('#data-score').style.display = 'none'
 }
