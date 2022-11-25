@@ -18,7 +18,7 @@ export const setUpPosts = (data, userName) => {
 
        list.sort((a, b) => b.score - a.score)
         
-       for (let i = 0; i < 11; i++){
+       for (let i = 0; i < 10; i++){
         const li = `
         <li class='list-group-item list-group-item-action'>
        <p> ${list[i].name} ${list[i].continent} ${list[i].score}</p>
