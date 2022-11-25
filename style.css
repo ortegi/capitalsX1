@@ -150,15 +150,22 @@ p.text-center {
 
 
 #firstBtn{
-    display: block;
+    display: none;
 }
 
 
+#containerPost{
+    display: none;
+}
 
 #logOut{
     display: none;
     color: white;
 }
+.posts li, .posts p{
+    color: #252525;
+}
+
 
 @media only screen and (min-width: 700px)  {
     #cat{

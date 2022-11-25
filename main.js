@@ -9,13 +9,14 @@ import {auth, db} from './modules/firebase.js'
 import './modules/google.js'
 import {loginCheck} from './modules/loginCheck.js'
 import './modules/logOut.js'
-import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js"
+import { collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js"
 import { goggleInit} from './modules/google.js'
+import {setUpPosts} from './modules/postlist.js'
 
 window.goggleInit = goggleInit
-
+window.selectContinent = selectContinent
 window.getContinent = getContinent
-
+window.showScoresOn = showScoresOn 
 
 let continentData= []  //this is the raw data from de api, it contais all countries from the selected continent
 let countryData = [] // this has the data of the country randomly selected by the getCountry() function. it has 3 items [countryToGuess, capitalToAnswer, flag]
@@ -31,6 +32,7 @@ async function getContinent(continent){   // this gets the data from the contine
             //TO play again : this is for when the user hits the play again button so everythin from the past game is DELETED
             endGameTextOff();   
             WonGameTextOff()
+            showScoresOff()
             playAgainbtnOff();
             reset()
             //
@@ -197,6 +199,7 @@ function endGameTextOn(){   //generates the text then game is over
         <span> ${score[1]} </span> <br>
         Mejor puntuacion en ${score[3]}: <i class="fa-regular fa-star fa-sm"></i> ${localStorage[score[3]]} 
         </p>
+        <button type="button" class="btn btn-light btn-lg btn-block" id="showScores" onclick='showScoresOn()'> Show more scores! </button>
     </div>
 `
 }
@@ -211,6 +214,7 @@ function endGame(){  //it is called when the game is oer
     gameOVer()  //the sound of the game when its over
     saveScore()  //sets best score
     saveDataFireBase()
+    //getDataFireBase()
     document.getElementById('onlyImg').style.display = 'none'
     document.getElementById('cat').style.display = 'block'
     let x = document.getElementsByClassName('btn-asw')
@@ -234,7 +238,7 @@ function WonGameTextOn(){  //generates the text when the user wins the game
     <div class='winGameX'>
         <p> Enhorabuena!!! <br> Lo has conseguido<br> Eres el mejor acertando capitales! <br> Mejor puntuacion en: ${score[3]}: ${localStorage[score[3]]} </p>
         <i class="fa-solid fa-trophy"></i>
-        <button type="button" class="btn btn-light btn-lg btn-block" id="googleBtn"> Sign with Google to save score</button>
+        <button type="button" class="btn btn-light btn-lg btn-block" id="showScores"  onclick='showScoresOn()'> Show more scores! </button>
     </div>
 `
 }
@@ -244,10 +248,9 @@ function gameWon(){  //its called when the user wins the game
     gameWonSound()  //play a victory sound
     saveScore() //it saves the best score
     saveDataFireBase()
+    //////getDataFireBase()
     document.getElementById('onlyImg').style.display = 'none'
     document.getElementById('cat').style.display = 'block';
-    const googleBtn = document.querySelector('#googleBtn')
-    googleBtn.style.display = 'block'
     let x = document.getElementsByClassName('btn-asw')
     for (let i =0; i < 3; i++){
         x[i].style.display = "none"
@@ -302,3 +305,27 @@ async function saveDataFireBase(){
 
 }
 
+async function getDataFireBase(){
+    const querySnapshot = await getDocs(collection(db, 'score'));
+    setUpPosts(querySnapshot.docs)
+    
+
+}
+
+function showScoresOn (){
+    let mainContainer = document.querySelector('#mainContainer')
+    let postContainer = document.querySelector('#containerPost')
+    mainContainer.style.display = 'none'
+    postContainer.style.display = 'block'
+    getDataFireBase()
+
+}
+
+function showScoresOff(){
+    let mainContainer = document.querySelector('#mainContainer')
+    let postContainer = document.querySelector('#containerPost')
+    mainContainer.style.display = 'block'
+    postContainer.style.display = 'none'
+
+
+}
