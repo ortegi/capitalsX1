@@ -235,7 +235,7 @@ function WonGameTextOn(){  //generates the text when the user wins the game
     endGameText.style.display = 'block'
     endGameText.innerHTML = `
     <div class='winGameX'>
-        <p> Enhorabuena!!! <br> Lo has conseguido<br> Eres el mejor acertando capitales! <br> Tu puntuacion en: ${score[3]}: ${localStorage[score[3]]} </p>
+        <p> Enhorabuena!!! <br> Lo has conseguido<br> Puntuación en: ${score[3]}: ${localStorage[score[3]]} </p>
         <i class="fa-solid fa-trophy"></i>
         
     </div>

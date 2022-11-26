@@ -174,8 +174,9 @@ p.text-center {
 .posts li, .posts p {
     color: #252525;
     text-align: center;
-    height: 50px; 
+    height: 68px;
     margin: 0 auto;
+    padding: 5px;
 }
 
 
