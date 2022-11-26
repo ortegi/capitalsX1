@@ -9,7 +9,7 @@ import {auth, db} from './modules/firebase.js'
 import './modules/google.js'
 import {loginCheck} from './modules/loginCheck.js'
 import './modules/logOut.js'
-import { collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js"
+import { collection, addDoc, getDocs, setDoc, doc, getDoc} from "https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js"
 import { goggleInit} from './modules/google.js'
 import {setUpPosts} from './modules/postlist.js'
 
@@ -17,6 +17,7 @@ window.goggleInit = goggleInit
 window.selectContinent = selectContinent
 window.getContinent = getContinent
 window.showScoresOn = showScoresOn 
+
 
 let continentData= []  //this is the raw data from de api, it contais all countries from the selected continent
 let countryData = [] // this has the data of the country randomly selected by the getCountry() function. it has 3 items [countryToGuess, capitalToAnswer, flag]
@@ -213,9 +214,8 @@ function endGameTextOff(){   //turn the game over text OFF
 function endGame(){  //it is called when the game is oer
     gameOVer()  //the sound of the game when its over
     saveScore()  //sets best score
-    saveDataFireBase()
-    showScoresOn( )
-    //getDataFireBase()
+    getDataFireBase()
+    setTimeout(showScoresOn, 1500)
     document.getElementById('onlyImg').style.display = 'none'
     document.getElementById('cat').style.display = 'block'
     let x = document.getElementsByClassName('btn-asw')
@@ -248,9 +248,8 @@ function WonGameTextOn(){  //generates the text when the user wins the game
 function gameWon(){  //its called when the user wins the game
     gameWonSound()  //play a victory sound
     saveScore() //it saves the best score
-    saveDataFireBase()
-    showScoresOn()
-    //////getDataFireBase()
+    getDataFireBase()
+    setTimeout(showScoresOn, 1500)
     document.getElementById('onlyImg').style.display = 'none'
     document.getElementById('cat').style.display = 'block';
     let x = document.getElementsByClassName('btn-asw')
@@ -265,24 +264,32 @@ function gameWon(){  //its called when the user wins the game
 
 //Best score Data, it saves the best score in local host
 function saveScore(){
+    
         if(localStorage[score[3]]){
             if(score[1] > localStorage[score[3]]){
                 localStorage[score[3]]= score[1]
+
             }
         }else{
             localStorage[score[3]] = score[1]
         }
-    console.log(localStorage[score[3]])
+         
+     
+
+
+  
 }
 
 ///firebase
 
-let userName= ''
+let userEmail= ''
+let userName = ''
 
 onAuthStateChanged(auth, async (user) => {
 
     if (user){
         console.log('userin')
+        userEmail = user.email;
         userName = user.displayName
     }else{
         console.log('nope')
@@ -293,14 +300,15 @@ onAuthStateChanged(auth, async (user) => {
 
 
 async function saveDataFireBase(){
-
+    console.log('yes')
     try {
-        const docRef = await addDoc(collection(db, "score"), {
+        const docRef = await setDoc(doc(db, 'score', userEmail), {
           name: userName,
           score: score[1],
           continent: score[3]
         });
         console.log('made it bitch');
+        console.log(score[3], score[1])
       } catch (error) {
         console.log(error);
       }
@@ -308,19 +316,43 @@ async function saveDataFireBase(){
 }
 
 async function getDataFireBase(){
-    const querySnapshot = await getDocs(collection(db, 'score'));
-    setUpPosts(querySnapshot.docs, userName)
+    const docRef = doc(db, 'score', userEmail)
+    const docSnap = await getDoc(docRef)
+    let data = ''
+
+    if(docSnap.exists()) {
+        data = docSnap.data();
+        console.log('document data:', data.score);
+    }else{
+        saveDataFireBase()
+    }
+
+    if(score[1] > data.score){
+        saveDataFireBase()
+    }
     
+
+    //document data: {score: 0, continent: 'africa'}
+
+}
+
+
+async function getAllDataFireBase(){
+    const querySnapshot = await getDocs(collection(db, 'score'));
+    setUpPosts(querySnapshot.docs)
+    console.log('ok')
 
 }
 
 function showScoresOn (){
     let dataFireStore = document.querySelector('#data-score')
     dataFireStore.style.display = 'block'
-    getDataFireBase()
+    getAllDataFireBase()
+    
 
 }
 
 function showScoresOff(){
     document.querySelector('#data-score').style.display = 'none'
 }
+

@@ -4,35 +4,51 @@ const postList = document.querySelector('.posts')
 
 
 
-export const setUpPosts = (data, userName) => {
+export const setUpPosts = (data) => {
     if (data.length){
         let html =''
-        let list = []
+        let list = [];
         data.forEach(doc => {
             let post = doc.data()
-            list.push(post)
-
-          
+            list.push(post);
            
        })
-
+       
        list.sort((a, b) => b.score - a.score)
         
-       for (let i = 0; i < 10; i++){
-        const li = `
-        <li class='list-group-item list-group-item-action'>
-       <p> ${list[i].name} ${list[i].continent} ${list[i].score}</p>
-        </li>
-        `
-        html += li
+       if(data.length >= 10){
+        for (let i = 0; i < 10; i++){
+            const li = `
+            <li class='list-group-item list-group-item-action'>
+           <p> ${list[i].name} ${list[i].continent} ${list[i].score}</p>
+            </li>
+            `
+            html += li
+           }
+       } else {
+        
+            list.forEach(item => {
+                const li = `
+                <li class='list-group-item list-group-item-action'>
+               <p> ${item.name} ${item.continent} ${item.score}</p>
+                </li>
+                `
+                html += li
+                
+
+            })
+
+
        }
+      
        postList.innerHTML = html;
 
-
+      console.log(list)
 
     } else {
-        postList.innerHTMLn= `
+        postList.innerHTML= `
         <h1> Not scores yet </h1>
          `
     }
 }
+
