@@ -194,11 +194,9 @@ function endGameTextOn(){   //generates the text then game is over
     endGameText.style.display = 'block'
     endGameText.innerHTML = `
     <div class='endGameX'>
-        <p> Juego terminado, has perdido.</p>
         <p id='finalScore'> 
-        <i class="fa-regular fa-star fa-2xl" id='star'></i> <br>
-        <span> ${score[1]} </span> <br>
-        Mejor puntuacion en ${score[3]}: <i class="fa-regular fa-star fa-sm"></i> ${localStorage[score[3]]} 
+        <i class="fa-regular fa-star fa-2xl" id='star'></i> 
+        <span> ${score[1]} </span> 
         </p>
        
     </div>
@@ -237,7 +235,7 @@ function WonGameTextOn(){  //generates the text when the user wins the game
     endGameText.style.display = 'block'
     endGameText.innerHTML = `
     <div class='winGameX'>
-        <p> Enhorabuena!!! <br> Lo has conseguido<br> Eres el mejor acertando capitales! <br> Mejor puntuacion en: ${score[3]}: ${localStorage[score[3]]} </p>
+        <p> Enhorabuena!!! <br> Lo has conseguido<br> Eres el mejor acertando capitales! <br> Tu puntuacion en: ${score[3]}: ${localStorage[score[3]]} </p>
         <i class="fa-solid fa-trophy"></i>
         
     </div>
@@ -347,6 +345,7 @@ async function getAllDataFireBase(){
 function showScoresOn (){
     let dataFireStore = document.querySelector('#data-score')
     dataFireStore.style.display = 'block'
+    document.querySelector('#bestScore').style.display = 'block'
     getAllDataFireBase()
     
 

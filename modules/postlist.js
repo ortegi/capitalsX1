@@ -20,7 +20,7 @@ export const setUpPosts = (data) => {
         for (let i = 0; i < 10; i++){
             const li = `
             <li class='list-group-item list-group-item-action'>
-           <p> ${list[i].name} ${list[i].continent} ${list[i].score}</p>
+           <p> <i class="fa-solid fa-trophy"></i>${list[i].score} ${list[i].name} en <i class="fa-solid fa-earth-americas"></i> ${list[i].continent} </p>
             </li>
             `
             html += li
@@ -30,7 +30,7 @@ export const setUpPosts = (data) => {
             list.forEach(item => {
                 const li = `
                 <li class='list-group-item list-group-item-action'>
-               <p> ${item.name} ${item.continent} ${item.score}</p>
+               <p> <i class="fa-solid fa-trophy"></i> ${item.score} ${item.name} en <i class="fa-solid fa-earth-americas"></i> ${item.continent}</p>
                 </li>
                 `
                 html += li

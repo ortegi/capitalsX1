@@ -65,12 +65,17 @@ p#lives {
     text-align: center;
     line-height: 40px;
     font-size: 25px;
-    padding: 15px;
+    padding-top: 26px;
+
 }
 
 #finalScore{
-    font-size: 20px;
+    font-size: 18px;
   
+}
+
+ul.list-group.posts {
+    margin: 10px 0px;
 }
 
 #onlyImg{
@@ -119,7 +124,8 @@ i#star {
 
 span {
     position: relative;
-    bottom: 40px;
+    bottom: 2px;
+    right: 43px;
 }
 
 .btn{
@@ -165,6 +171,18 @@ p.text-center {
     color: #252525;
 }
 
+.posts li, .posts p {
+    color: #252525;
+    text-align: center;
+    height: 50px; 
+    margin: 0 auto;
+}
+
+
+#bestScore{
+    display: none;
+    font-size: 20px;;
+}
 
 @media only screen and (min-width: 700px)  {
     #cat{
@@ -173,6 +191,11 @@ p.text-center {
 
     .btn{
         width: 30%;
+    }
+
+    .list-group-item-action {
+        width: 50%;
+        
     }
    
   }
