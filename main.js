@@ -11,8 +11,7 @@ import {loginCheck} from './modules/loginCheck.js'
 import './modules/logOut.js'
 import { collection, addDoc, getDocs, setDoc, doc, getDoc} from "https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js"
 import { goggleInit} from './modules/google.js'
-import {setUpPosts} from './modules/postlist.js'
-
+import {setUpPosts,  trophiesColor} from './modules/postlist.js'
 window.goggleInit = goggleInit
 window.selectContinent = selectContinent
 window.getContinent = getContinent
@@ -298,15 +297,16 @@ onAuthStateChanged(auth, async (user) => {
 
 
 async function saveDataFireBase(){
-    console.log('yes')
+    let userNamexArray= userName.split(' ')
+    userName = userNamexArray[0]
+
     try {
-        const docRef = await setDoc(doc(db, 'score', userEmail), {
+        const docRef = await setDoc(doc(db, score[3], userEmail), {
           name: userName,
           score: score[1],
-          continent: score[3]
         });
         console.log('made it bitch');
-        console.log(score[3], score[1])
+        //console.log(score[3], score[1])
       } catch (error) {
         console.log(error);
       }
@@ -314,7 +314,7 @@ async function saveDataFireBase(){
 }
 
 async function getDataFireBase(){
-    const docRef = doc(db, 'score', userEmail)
+    const docRef = doc(db, score[3], userEmail)
     const docSnap = await getDoc(docRef)
     let data = ''
 
@@ -336,7 +336,7 @@ async function getDataFireBase(){
 
 
 async function getAllDataFireBase(){
-    const querySnapshot = await getDocs(collection(db, 'score'));
+    const querySnapshot = await getDocs(collection(db, score[3]));
     setUpPosts(querySnapshot.docs)
     console.log('ok')
 

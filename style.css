@@ -102,7 +102,7 @@ ul.list-group.posts {
 }
 
 .fa-trophy{
-    color: #eeba0b;
+    color: purple;
     font-size: 20px;
 }
 
@@ -118,14 +118,14 @@ p#question {
 }
 
 i#star {
-    font-size: 60px;
+    font-size: 70px;
 
 }
 
 span {
     position: relative;
     bottom: 2px;
-    right: 43px;
+    right: 50px;
 }
 
 .btn{
@@ -173,16 +173,22 @@ p.text-center {
 
 .posts li, .posts p {
     color: #252525;
-    text-align: center;
-    height: 68px;
+    text-align: left;
+    height: auto;
     margin: 0 auto;
-    padding: 5px;
+    padding: 5px 10px;
 }
 
 
 #bestScore{
     display: none;
     font-size: 20px;;
+}
+
+span.ranking {
+    position: inherit;
+    font-weight: bold;
+    font-size: 18px;
 }
 
 @media only screen and (min-width: 700px)  {
