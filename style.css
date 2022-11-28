@@ -185,10 +185,12 @@ p.text-center {
     font-size: 20px;;
 }
 
-span.ranking {
-    position: inherit;
-    font-weight: bold;
-    font-size: 18px;
+ 
+
+.ranking {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 @media only screen and (min-width: 700px)  {

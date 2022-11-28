@@ -19,21 +19,21 @@ export const setUpPosts = (data) => {
         if(data.length >= 10){
         for (let i = 0; i < 10; i++){
             const li = `
-            <li class='list-group-item list-group-item-action'>
-           <p> <span class = 'ranking'> ${i+1} </span> ${list[i].name}  ${list[i].score}  <i class="fa-solid fa-trophy"></i>  </p>
-            </li>
-            `
+                <li class='list-group-item list-group-item-action'>
+                <div class = 'ranking'>  <p class = 'rankingPosition'> ${i+1}  ${list[i].name} </p> <p>${list[i].score}  <i class="fa-solid fa-trophy"></i>  </p> <div>
+                </li>
+                `
             html += li
             
            }
        } else {
             for (let i = 0; i < data.length; i++){
-                const li = `
+            const li = `
                 <li class='list-group-item list-group-item-action'>
-            <p> <span class = 'ranking'> ${i+1} </span> ${list[i].name}  ${list[i].score} <i class="fa-solid fa-trophy"> </i>   </p>
+                <div class = 'ranking'>  <p class = 'rankingPosition'> ${i+1}  ${list[i].name} </p> <p>${list[i].score}  <i class="fa-solid fa-trophy"></i>  </p> <div>
                 </li>
                 `
-                html += li
+            html += li
                 
             }
 
