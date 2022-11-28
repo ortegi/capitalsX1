@@ -8,3 +8,6 @@ logOut.addEventListener('click', async() =>{
     await signOut(auth)
     console.log('user sign out')
 })
+
+
+//to sign out

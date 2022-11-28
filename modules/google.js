@@ -4,13 +4,6 @@ import {auth} from './firebase.js'
 import { showMessage } from "./toast.js"
 
 
-//const googleBtn = document.querySelector('#googleBtn')
-
-//googleBtn.addEventListener('click', async() => {
-
-   // c
-//})
-
 export async function goggleInit (){
 
     const provider = new GoogleAuthProvider ()
@@ -26,3 +19,5 @@ export async function goggleInit (){
     }
 
 }
+
+

@@ -1,4 +1,7 @@
 
+//this files contains the sounds of the game.
+
+
 function winSound(){
     let x = document.getElementById('audioWin')
     x.play()

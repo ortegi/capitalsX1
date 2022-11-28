@@ -37,19 +37,6 @@ export const setUpPosts = (data) => {
                 
             }
 
-            /*list.forEach(item => {
-                const li = `
-                <li class='list-group-item list-group-item-action'>
-               <p> <i class="fa-solid fa-trophy"></i> ${item.score} ${item.name}</p>
-                </li>
-                `
-               
-                html += li
-                
-
-            })*/
-
-
        }
 
   
@@ -70,7 +57,7 @@ export const setUpPosts = (data) => {
 export function trophiesColor(){
 
     let trophies = document.querySelectorAll('.fa-trophy');
-   
+
 
     if (trophies.length){
         if(trophies.length === 1){
@@ -86,7 +73,5 @@ export function trophiesColor(){
 
     }
     
-
-   
 
 }
